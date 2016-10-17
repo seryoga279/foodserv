@@ -12,7 +12,7 @@ export class GroceriesAllComponent implements OnInit {
 
     ngOnInit() {
         this.apiService
-            .getRecipes()
+            .getGroceries()
             .subscribe( (data) => { this.groceriesArray = data; } );
     }
 }

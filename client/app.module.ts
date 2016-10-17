@@ -10,6 +10,7 @@ import { HelloComponent } from "./components/shared/hello.component";
 import { ContactModule } from "./modules/contact/contact.module";
 import { HomeModule } from "./modules/home/home.module";
 import { GroceriesModule } from "./modules/groceries/groceries.module";
+import { RecipesModule } from "./modules/recipes/recipes.module";
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import { GroceriesModule } from "./modules/groceries/groceries.module";
         ContactModule,
         HomeModule,
         GroceriesModule,
+        RecipesModule,
         routing
     ],
     providers: [
