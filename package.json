@@ -11,7 +11,8 @@
     "twc:server:w": "tsc -w -p ./server",
     "typings": "typings install",
     "bundle:prod": "node tools/builder.js --prod",
-    "postinstall": "typings install && tsc -p ./server"
+    "postinstall": "typings install && tsc -p ./server",
+    "sequelize": "sequelize"
   },
   "engines": {
     "node": ">= 5.4.1"
