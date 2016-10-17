@@ -13,12 +13,12 @@ export class HomeComponent {
 
     protected() {
         this.apiService
-            .get("/api")
+            .getRecipes()
             .subscribe(
                 (data) => { this.response = data; },
                 (error: Error) => {
                     this.error = error.message;
                     setTimeout(() => this.error = null, 4000)
-                });
+            });
     }
 }
