@@ -21,3 +21,4 @@ export class RecipeItemComponent implements OnInit {
         });
     }
 }
+// <h1>Recipe: {{ recipe.name }}</h1>

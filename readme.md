@@ -12,6 +12,20 @@
 - Sequelize
 - Sqlite (for the development env)
 
+## Development
+
+### Directories structure
+
+- `/client` – файлы, необходимые для frontend'а
+- `/config` – конфигцрация (вам туда лезть не нужно, сейчас там указаны настройки базы данных)
+- `/migrations` – файлы миграций 
+- `/models` – описание моделей (таблиц данных)
+- `/public` – статичные файлы, доступные на сервере
+- `/seeders` – сидеры (наполнители) данных
+- `/server` – бэкэнд
+  - `/routes` – описание url маршрутов
+    - `/api` – все маршруты, которые доступны как http://localhost:3000/api/...
+
 ## Install
 ```bash
 git clone https://github.com/fkn/foodserv
