@@ -4,6 +4,7 @@ import { NgSemanticModule } from "ng-semantic";
 import { BrowserModule } from '@angular/platform-browser';
 
 import { RecipesAllComponent } from "./all/recipes-all.component";
+import { RecipeItemComponent } from './item/recipe-item.component';
 import { routing } from "./recipes.routing";
 import { SharedModule } from "../shared/shared.module";
 
@@ -16,7 +17,7 @@ import { SharedModule } from "../shared/shared.module";
         SharedModule.forRoot()
     ],
     exports: [  ],
-    declarations: [ RecipesAllComponent ],
+    declarations: [ RecipesAllComponent, RecipeItemComponent ],
     bootstrap:    [ RecipesAllComponent ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

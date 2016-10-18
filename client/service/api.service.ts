@@ -23,6 +23,13 @@ export class ApiService {
             .map((response: Response) => response.json());
     }
 
+    getRecipe(id: number) {
+        return this
+            .http
+            .get(`/api/recipe/${id}`)
+            .map((response: Response) => response.json());        
+    }
+
     getGroceries() {
         return this
             .http

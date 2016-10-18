@@ -10,5 +10,17 @@ recipeApi.get("/", (request: Request, response: Response) => {
         .then(items => response.send(items));
 });
 
+recipeApi.get("/:id", (request: Request, response: Response) => {
+    db.Recipe
+        .findById(request.params.id)
+        .then(item => response.send(item));
+});
+
 
 export { recipeApi };
+
+// CRUD
+// C – create PUT
+// R – read   GET
+// U - update POST
+// D - delete DELETE
