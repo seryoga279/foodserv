@@ -10,4 +10,10 @@ groceryApi.get("/", (request: Request, response: Response) => {
         .then(items => response.send(items));
 });
 
+groceryApi.get("/:id", (request: Request, response: Response) => {
+    db.GroceryItem
+        .findById(request.params.id)
+        .then(item => response.send(item));
+});
+
 export { groceryApi };
