@@ -1,4 +1,4 @@
-import { Router, Response, Request, NextFunction } from "express";
+import {Router, Response, Request, NextFunction} from "express";
 
 const groceryApi: Router = Router();
 
@@ -16,4 +16,10 @@ groceryApi.get("/:id", (request: Request, response: Response) => {
         .then(item => response.send(item));
 });
 
-export { groceryApi };
+groceryApi.get((request: Request) => {
+    console.log("delete");
+    db.GroceryItem.find({where:{id:request.params.id}}).complete(function (err,groceryItem) {
+        groceryItem.destroy();
+    });
+});
+export {groceryApi};
