@@ -4,7 +4,8 @@ import { GroceriesItemComponent } from './item/groceries-item.component';
 
 export const routes: Routes = [
     { path: 'grocery', component: GroceriesAllComponent, pathMatch: "full" },
-    { path: 'grocery/:id', component: GroceriesItemComponent }
+    { path: 'grocery/:id', component: GroceriesItemComponent },
+    { path: 'grocery/add', component: GroceriesAddComponent}
 ];
 
 export const routing = RouterModule.forChild(routes);
