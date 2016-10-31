@@ -13,6 +13,7 @@ module.exports = {
       { name: 'Kebab', createdAt: new Date(), updatedAt: new Date() }
     ], {}) )
     .catch(err=>console.log(err));
+
   },
 
   down: function (queryInterface, Sequelize) {
