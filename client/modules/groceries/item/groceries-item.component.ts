@@ -1,11 +1,8 @@
-import {Component, OnInit,NgModule} from "@angular/core";
-import {Pipe, PipeTransform } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
-import { ApiService } from "../../../service/api.service";
-import { Location }from '@angular/common';
-
-
-
+import {Component, OnInit, NgModule} from "@angular/core";
+import {Pipe, PipeTransform} from "@angular/core";
+import {ActivatedRoute, Params} from "@angular/router";
+import {ApiService} from "../../../service/api.service";
+import {Location}from '@angular/common';
 
 @Component({
     selector: "form",
@@ -20,20 +17,21 @@ export class GroceriesItemComponent implements OnInit {
     private groceries: any = {};
 
 
-    constructor(
-        private apiService: ApiService,
-        private route: ActivatedRoute,
-        private location: Location) {}
-
+    constructor(private apiService: ApiService,
+                private route: ActivatedRoute,
+                private location: Location) {
+    }
 
     ngOnInit() {
-        this.route.params.forEach( (params: Params) => {
+        this.route.params.forEach((params: Params) => {
             this.apiService
                 .getGrocery(params.id)
-                .subscribe( (data) => { this.groceries = data; } );
+                .subscribe((data) => {
+                    this.groceries = data;
+                });
         });
-
     }
+
     goBack(): void {
         this.location.back();
     }
@@ -52,7 +50,7 @@ export class KeysPipe implements PipeTransform {
             dataArr.push(value[key])
         });
 
-        if(args[1]) {
+        if (args[1]) {
             dataArr.sort((a: Object, b: Object): number => {
                 return a[keyName] > b[keyName] ? 1 : -1;
             });

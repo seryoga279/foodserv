@@ -1,13 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
-import { AuthHttp } from "angular2-jwt";
-import { Response } from "@angular/http";
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
+import {AuthHttp} from "angular2-jwt";
+import {Response} from "@angular/http";
 import "rxjs/add/operator/map";
 
 @Injectable()
 export class ApiService {
 
-    constructor(private authHttp: AuthHttp, private http: Http) {}
+    constructor(private authHttp: AuthHttp, private http: Http) {
+    }
 
     get(url: string) {
         return this
@@ -27,20 +28,20 @@ export class ApiService {
         return this
             .http
             .get(`/api/recipe/${id}`)
-            .map((response: Response) => response.json());        
+            .map((response: Response) => response.json());
     }
 
     getGroceries() {
         return this
             .http
             .get('/api/grocery/')
-            .map((response: Response) => response.json());        
+            .map((response: Response) => response.json());
     }
+
     getGrocery(id: number) {
         return this
             .http
             .get(`/api/grocery/${id}`)
             .map((response: Response) => response.json());
     }
-
 }
