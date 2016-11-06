@@ -1,7 +1,7 @@
 <div class="ui medium aligned divided animated selection list">
-    <div class="item" (click)="showGrocery(item.id)" *ngFor="let item of groceriesArray">
+    <div class="item" (click)="showGrocery(item.id) " *ngFor="let item of groceriesArray" [attr.id]="'grocery: '+item.id" >
         <div class="right floated middle aligned content">
-            <button class="ui medium inverted red button" (click)="removeGrocery()"><i class="Trash Outline icon"></i> Remove</button>
+            <button class="ui medium inverted red button" (click)="remGrocery(item.id);$event.stopPropagation()"><i class="Trash Outline icon"></i> Remove</button>
         </div>
         <div class="content">
             <div class="middle aligned content">

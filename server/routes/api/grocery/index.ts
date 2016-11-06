@@ -13,13 +13,15 @@ groceryApi.get("/", (request: Request, response: Response) => {
 groceryApi.get("/:id", (request: Request, response: Response) => {
     db.GroceryItem
         .findById(request.params.id)
-        .then(item => response.send(item));
+        .then(item => response.send(item))
+
 });
 
-groceryApi.get((request: Request) => {
+groceryApi.get("/remove/:id", (request: Request, response: Response) => {
     console.log("delete");
-    db.GroceryItem.find({where:{id:request.params.id}}).complete(function (err,groceryItem) {
-        groceryItem.destroy();
-    });
+    db.GroceryItem
+        .destroy({
+            where:{id:request.params.id}
+        }).then(()=>null);
 });
 export {groceryApi};

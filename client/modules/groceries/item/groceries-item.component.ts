@@ -4,9 +4,6 @@ import { ActivatedRoute, Params } from "@angular/router";
 import { ApiService } from "../../../service/api.service";
 import { Location }from '@angular/common';
 
-
-
-
 @Component({
     selector: "form",
     templateUrl: `client/modules/groceries/item/groceries-item.component.html`,

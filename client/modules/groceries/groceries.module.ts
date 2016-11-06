@@ -17,7 +17,7 @@ import { SharedModule } from "../shared/shared.module";
         SharedModule.forRoot()
     ],
     exports: [  ],
-    declarations: [ GroceriesAllComponent,GroceriesItemComponent ],
+    declarations: [ GroceriesAllComponent,GroceriesItemComponent],
     bootstrap:    [ GroceriesAllComponent ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
