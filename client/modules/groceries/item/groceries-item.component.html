@@ -1,57 +1,57 @@
 <table class="ui celled table">
     <thead>
     <tr>
-        <th colspan="2"> {{ groceries.name }}</th>
+        <th contenteditable="true" (blur)="groceries.name=$event.target.outerText" colspan="2"> {{ groceries.name }}
+        </th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>Calories</td>
-
-        <td class="selectable">
-            <a href="#">{{groceries.calories}}</a>
+        <!-- onRowClick($event, groceries.calories); -->
+        <td class="selectable" contenteditable="true" (blur)="groceries.calories=$event.target.outerText">
+            {{groceries.calories}}
         </td>
     </tr>
     <tr>
         <td>Fat</td>
-        <td class="selectable">
-            <a href="#">{{groceries.fat}}</a>
+        <td class="selectable" contenteditable="true" (blur)="groceries.fat=$event.target.outerText">
+            {{groceries.fat}}
         </td>
     </tr>
     <tr>
         <td>Protein</td>
-        <td class="selectable">
-            <a href="#">{{groceries.protein}}</a>
+        <td class="selectable" contenteditable="true" (blur)="groceries.protein=$event.target.outerText">
+            {{groceries.protein}}
         </td>
     </tr>
     <tr>
         <td>Carbohydrate</td>
-        <td class="selectable">
-            <a href="#">{{groceries.carbohydrate}}</a>
-        </td>
+        <td class="selectable" contenteditable="true" (blur)="groceries.carbohydrate=$event.target.outerText">
+            {{groceries.carbohydrate}}
     </tr>
     <tr>
         <td>Acid</td>
-        <td class="selectable">
-            <a href="#">{{groceries.acid}}</a>
+        <td class="selectable" contenteditable="true" (blur)="groceries.acid=$event.target.outerText">
+            {{groceries.acid}}
         </td>
     </tr>
     <tr>
         <td>Polyols</td>
-        <td class="selectable">
-            <a href="#">{{groceries.polyols}}</a>
+        <td class="selectable" contenteditable="true" (blur)="groceries.polyols=$event.target.outerText">
+            {{groceries.polyols}}
         </td>
     </tr>
     <tr>
         <td>Fibre</td>
-        <td class="selectable">
-            <a href="#">{{groceries.fibre}}</a>
+        <td class="selectable" contenteditable="true" (blur)="groceries.fibre=$event.target.outerText">
+            {{groceries.fibre}}
         </td>
     </tr>
     <tr>
         <td>Ethanol</td>
-        <td class="selectable">
-            <a href="#">{{groceries.ethanol}}</a>
+        <td class="selectable" contenteditable="true" (blur)="groceries.ethanol=$event.target.outerText">
+            {{groceries.ethanol}}
         </td>
     </tr>
 
@@ -62,10 +62,12 @@
             <div class="ui right floated buttons">
                 <button (click)="goBack()" class="ui button">Cancel</button>
                 <div class="or"></div>
-                <button class="ui positive button">Save</button>
+                <button (click)="save(groceries)" class="ui positive button">Save</button>
             </div>
 
         </th>
     </tr>
     </tfoot>
 </table>
+
+

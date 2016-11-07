@@ -1,4 +1,6 @@
 import {Router, Response, Request, NextFunction} from "express";
+import {onError} from "@angular/upgrade/src/util";
+import {logError} from "typings/dist/support/cli";
 
 const groceryApi: Router = Router();
 
@@ -18,10 +20,29 @@ groceryApi.get("/:id", (request: Request, response: Response) => {
 });
 
 groceryApi.get("/remove/:id", (request: Request, response: Response) => {
-    console.log("delete");
     db.GroceryItem
         .destroy({
             where:{id:request.params.id}
         }).then(()=>null);
 });
+
+groceryApi.post("/update/:id",(request: Request, response: Response) => {
+    db.GroceryItem
+        .update({
+            name: request.body.groceries.name,
+            calories: request.body.groceries.calories,
+            fat: request.body.groceries.fat,
+            protein: request.body.groceries.protein,
+            carbohydrate: request.body.groceries.carbohydrate,
+            acid: request.body.groceries.acid,
+            polyols: request.body.groceries.polyols,
+            fibre: request.body.groceries.fibre,
+            ethanol: request.body.groceries.ethanol
+        },{
+            where:{
+                id:request.params.id
+            }
+        }).then(()=>null);
+});
+
 export {groceryApi};
