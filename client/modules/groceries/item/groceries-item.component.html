@@ -8,7 +8,6 @@
     <tbody>
     <tr>
         <td>Calories</td>
-        <!-- onRowClick($event, groceries.calories); -->
         <td class="selectable" contenteditable="true" (blur)="groceries.calories=$event.target.outerText">
             {{groceries.calories}}
         </td>
@@ -54,7 +53,6 @@
             {{groceries.ethanol}}
         </td>
     </tr>
-
     </tbody>
     <tfoot class="full-width">
     <tr>
@@ -62,7 +60,7 @@
             <div class="ui right floated buttons">
                 <button (click)="goBack()" class="ui button">Cancel</button>
                 <div class="or"></div>
-                <button (click)="save(groceries)" class="ui positive button">Save</button>
+                <button (click)="updateGrocery(groceries)" class="ui positive button">Save</button>
             </div>
 
         </th>

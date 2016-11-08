@@ -64,4 +64,18 @@ export class ApiService {
 
     }
 
+    createGrocery(groceries: any){
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this
+            .http
+            .post(`api/grocery/create`,{ groceries },options)
+            .map((response: Response) => response.json());
+
+    }
+
+
+
+
 }

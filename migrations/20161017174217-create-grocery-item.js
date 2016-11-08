@@ -9,31 +9,8 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             name: {
-                type: Sequelize.STRING
-            },
-            calories: {
-                type: Sequelize.DOUBLE
-            },
-            fat: {
-                type: Sequelize.DOUBLE
-            },
-            protein: {
-                type: Sequelize.DOUBLE
-            },
-            carbohydrate: {
-                type: Sequelize.DOUBLE
-            },
-            acid: {
-                type: Sequelize.DOUBLE
-            },
-            polyols: {
-                type: Sequelize.DOUBLE
-            },
-            fibre: {
-                type: Sequelize.DOUBLE
-            },
-            ethanol: {
-                type: Sequelize.DOUBLE
+                type: Sequelize.STRING,
+                unique: true
             },
             createdAt: {
                 allowNull: false,

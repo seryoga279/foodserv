@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 })
 export class GroceriesAllComponent implements OnInit {
     private groceriesArray: any[];
+    private groceries: any = {};
 
     constructor(private apiService: ApiService,
                 private router: Router) {}
@@ -22,6 +23,15 @@ export class GroceriesAllComponent implements OnInit {
 
     }
 
+    createGrocery(groceries: any){
+        console.log(groceries);
+        this.apiService.createGrocery(groceries).subscribe((data)=>{this.showGrocery(data.id)});
+
+
+    }
+    onRowClick(event){
+        console.log(event.target.outerText);
+    }
 
     ngOnInit() {
         this.apiService

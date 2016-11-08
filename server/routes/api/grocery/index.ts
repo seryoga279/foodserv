@@ -45,4 +45,19 @@ groceryApi.post("/update/:id",(request: Request, response: Response) => {
         }).then(()=>null);
 });
 
+groceryApi.post("/create",(request: Request, response: Response) => {
+    db.GroceryItem
+        .create({
+            name: request.body.groceries.name,
+            calories: request.body.groceries.calories,
+            fat: request.body.groceries.fat,
+            protein: request.body.groceries.protein,
+            carbohydrate: request.body.groceries.carbohydrate,
+            acid: request.body.groceries.acid,
+            polyols: request.body.groceries.polyols,
+            fibre: request.body.groceries.fibre,
+            ethanol: request.body.groceries.ethanol
+        }).then(item => response.send(item));
+});
+
 export {groceryApi};

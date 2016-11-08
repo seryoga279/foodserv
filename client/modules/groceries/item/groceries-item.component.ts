@@ -34,11 +34,8 @@ export class GroceriesItemComponent implements OnInit {
     goBack(): void {
         this.location.back();
     }
-    onRowClick(event, id){
-        console.log(event.target.outerText, id);
 
-    }
-    save(groceries: any){
+    updateGrocery(groceries: any){
         this.apiService.updateGrocery(groceries).subscribe();
 
     }
