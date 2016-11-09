@@ -16,6 +16,15 @@ recipeApi.get("/:id", (request: Request, response: Response) => {
         .then(item => response.send(item));
 });
 
+recipeApi.put("/", (request: Request, response: Response) => {
+    let name = request.body.name, description = request.body.description;
+    db.Recipe.create({
+        name: name,
+        description: description
+    })
+    .then(recipe => response.send(recipe));
+});
+
 
 export { recipeApi };
 
