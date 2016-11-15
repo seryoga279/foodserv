@@ -22,11 +22,11 @@ groceryApi.get("/:id", (request: Request, response: Response) => {
 groceryApi.get("/remove/:id", (request: Request, response: Response) => {
     db.GroceryItem
         .destroy({
-            where:{id:request.params.id}
+            where: {id: request.params.id}
         }).then(()=>response.sendStatus(200));
 });
 
-groceryApi.post("/update/:id",(request: Request, response: Response) => {
+groceryApi.post("/update/:id", (request: Request, response: Response) => {
     db.GroceryItem
         .update({
             name: request.body.groceries.name,
@@ -38,14 +38,14 @@ groceryApi.post("/update/:id",(request: Request, response: Response) => {
             polyols: request.body.groceries.polyols,
             fibre: request.body.groceries.fibre,
             ethanol: request.body.groceries.ethanol
-        },{
-            where:{
-                id:request.params.id
+        }, {
+            where: {
+                id: request.params.id
             }
         }).then(()=>null);
 });
 
-groceryApi.post("/create",(request: Request, response: Response) => {
+groceryApi.post("/create", (request: Request, response: Response) => {
     db.GroceryItem
         .create({
             name: request.body.groceries.name,
@@ -59,5 +59,16 @@ groceryApi.post("/create",(request: Request, response: Response) => {
             ethanol: request.body.groceries.ethanol
         }).then(item => response.send(item));
 });
+groceryApi.get("/search/:term", (request: Request, response: Response) => {
 
+    console.log(request.params.term);
+    db.GroceryItem.findAll({
+        attributes:['id','name'],
+        where: {
+            name:{
+                $like: '%'+request.params.term+'%'
+            }
+        }
+    }) .then(items => response.send(items));
+});
 export {groceryApi};

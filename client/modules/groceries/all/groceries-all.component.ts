@@ -19,7 +19,7 @@ export class GroceriesAllComponent implements OnInit {
     }
 
     remGrocery(item: any) {
-        this.apiService.remGrocery(item.id).subscribe(()=>{
+        this.apiService.remGrocery(item.id).subscribe(()=> {
             for (let i = 0; i < this.groceriesArray.length; i++) {
                 if (this.groceriesArray[i].id == item.id) {
                     this.groceriesArray.splice(i, 1);
@@ -31,11 +31,20 @@ export class GroceriesAllComponent implements OnInit {
     createGrocery(groceries: any) {
         console.log(groceries);
         this.apiService.createGrocery(groceries).subscribe((data)=> {
-            console.log(data);
             this.showGrocery(data.id)
         });
 
 
+    }
+
+    search(term: string) {
+
+        if (term.length == 0) {
+            console.log(term.length);
+            this.ngOnInit();
+        } else {
+            this.apiService.search(term).subscribe((data => this.groceriesArray = data))
+        }
     }
 
     onRowClick(event) {
