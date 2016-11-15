@@ -2,10 +2,11 @@
 	<h3>Add new recipe</h3>
 	<sm-input [control]="name" class="right fluid" placeholder="Enter name..."></sm-input>
 	<sm-input [control]="descr" class="right fluid" placeholder="Enter description..."></sm-input>
-	<sm-button class="positive" (click)="createRecipe(name.value, descr.value);
-		name.value = '';
-		descr.value = '';" icon="plus">Add recipe</sm-button>
+	<sm-button class="positive" (click)="createRecipe(name.value, descr.value);" icon="plus">Add recipe</sm-button>
 </sm-segment>
 <sm-list class="relaxed selection divided">
-	<sm-item (click)="showRecipe(item.id)" *ngFor="let item of recipesArray">{{item.id}} {{item.name}}</sm-item>
+	<sm-item *ngFor="let item of recipesArray">
+		<sm-button class="positive" (click)="deleteRecipe(item.id)" icon="delete"></sm-button>
+		<sm-a (click)="showRecipe(item.id)">{{item.id}} {{item.name}}</sm-a>
+	</sm-item>
 </sm-list>

@@ -42,6 +42,12 @@ export class ApiService {
             .map((response: Response) => response.json());
     }
 
+    deleteRecipe(id: number):Observable<any> {
+        return this
+            .http
+            .delete(`/api/recipe/${id}`)
+            .map((response: Response) => true);
+    }
 
     getGroceries() {
         return this
