@@ -23,7 +23,7 @@ groceryApi.get("/remove/:id", (request: Request, response: Response) => {
     db.GroceryItem
         .destroy({
             where:{id:request.params.id}
-        }).then(()=>null);
+        }).then(()=>response.sendStatus(200));
 });
 
 groceryApi.post("/update/:id",(request: Request, response: Response) => {

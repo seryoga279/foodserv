@@ -49,8 +49,8 @@ export class ApiService {
     remGrocery(id: number) {
         return this
             .http
-            .get(`api/grocery/remove/${id}`)
-            .map((response: Response) => response.text());
+            .get(`/api/grocery/remove/${id}`)
+            .map((response: Response) => true);
 
     }
     updateGrocery(groceries: any){
