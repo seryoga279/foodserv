@@ -1,8 +1,7 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import {AuthHttp} from "angular2-jwt";
-import {Response} from "@angular/http";
-import {Headers, RequestOptions} from '@angular/http';
+import { Injectable } from "@angular/core";
+import { Http } from "@angular/http";
+import { AuthHttp } from "angular2-jwt";
+import { Response } from "@angular/http";
 import "rxjs/add/operator/map";
 
 @Injectable()
@@ -30,6 +29,23 @@ export class ApiService {
             .http
             .get(`/api/recipe/${id}`)
             .map((response: Response) => response.json());
+    }
+
+    addRecipe(name: String, description: String):Observable<any> {
+        let params = { name, description };
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this
+            .http
+            .put('/api/recipe/', params, options)
+            .map((response: Response) => response.json());
+    }
+
+    deleteRecipe(id: number):Observable<any> {
+        return this
+            .http
+            .delete(`/api/recipe/${id}`)
+            .map((response: Response) => true);
     }
 
     getGroceries() {
