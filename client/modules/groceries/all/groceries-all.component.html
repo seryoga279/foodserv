@@ -1,3 +1,116 @@
-<sm-list class="relaxed selection divided">
-    <sm-item *ngFor="let item of groceriesArray">{{item.id}} {{item.name}}</sm-item>
+<div class="ui fluid basic segment">
+    <div class="ui fluid left icon action input">
+        <i class="search icon"></i>
+        <input type="text" placeholder="Grocery name.." #searchBox id="search-box" (keyup)="search(searchBox.value)">
+        <div class="ui right aligned teal labeled icon button"
+             (click)="createModal.show({blurring: false,closable: false})">Create New Grocery <i class="add icon"></i>
+        </div>
+        </div>
+
+</div>
+
+<sm-list class="ui medium aligned divided animated selection">
+    <sm-item (click)="showGrocery(item.id);" *ngFor="let item of groceriesArray" [attr.id]="'grocery:'+item.id">
+        <div class="right floated middle aligned content">
+            <button class="ui medium inverted red button" type="button"
+                    (click)="removeModal.show({blurring: false,closable: false});$event.stopPropagation()"
+                    [attr.id]="'button:'+item.id">
+                <i class="Remove Outline icon"></i> Remove
+            </button>
+            <sm-modal title="Delete {{item.name}} grocery" class="ui basic modal" icon="Trash" #removeModal>
+                <modal-content>
+                    <p align="center">Are you sure you want to delete {{item.name}} grocery</p>
+                </modal-content>
+                <modal-actions>
+                    <sm-button class="ui cancel red basic inverted" icon="remove" (click)="removeModal.hide()"> No
+                    </sm-button>
+                    <sm-button class="ui ok green basic inverted" icon="checkmark" (click)="remGrocery(item)"> Yes
+                    </sm-button>
+                </modal-actions>
+            </sm-modal>
+        </div>
+        <div class="content">
+            <div class="middle aligned content">
+                <h4 class="ui grey header">{{item.id}} {{item.name}}</h4>
+            </div>
+        </div>
+    </sm-item>
 </sm-list>
+
+<sm-modal title="Create new grocery" class="" #createModal>
+    <modal-content>
+
+        <sm-list class="relaxed selection">
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Name</div>
+                    <input type="text" placeholder="Enter grocery name" (blur)="groceries.name=$event.target.value">
+                </div>
+            </sm-item>
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Calories</div>
+                    <input type="text" placeholder="Enter the amount of calories in the ingredient"
+                           (blur)="groceries.calories=$event.target.value">
+                </div>
+            </sm-item>
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Fat</div>
+                    <input type="text" placeholder="Enter the amount of fat in the ingredient"
+                           (blur)="groceries.fat=$event.target.value">
+                </div>
+            </sm-item>
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Protein</div>
+                    <input type="text" placeholder="Enter the amount of protein in the ingredient"
+                           (blur)="groceries.protein=$event.target.value">
+                </div>
+            </sm-item>
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Carbohydrate</div>
+                    <input type="text" placeholder="Enter the amount of carbohydrate in the ingredient"
+                           (blur)="groceries.carbohydrate=$event.target.value">
+                </div>
+            </sm-item>
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Acid</div>
+                    <input type="text" placeholder="Enter the amount of acid in the ingredient"
+                           (blur)="groceries.acid=$event.target.value">
+                </div>
+            </sm-item>
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Polyols</div>
+                    <input type="text" placeholder="Enter the amount of polyols in the grocery"
+                           (blur)="groceries.polyols=$event.target.value">
+                </div>
+            </sm-item>
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Fibre</div>
+                    <input type="text" placeholder="Enter the amount of fibre in the grocery"
+                           (blur)="groceries.fibre=$event.target.value">
+                </div>
+            </sm-item>
+            <sm-item>
+                <div class="ui fluid labeled input">
+                    <div class="ui label">Ethanol</div>
+                    <input type="text" placeholder="Enter the amount of ethanol in the grocery"
+                           (blur)="groceries.ethanol=$event.target.value">
+                </div>
+            </sm-item>
+        </sm-list>
+
+    </modal-content>
+    <modal-actions>
+        <div class="ui buttons">
+            <div class="ui positive button primary" (click)="createGrocery(groceries); createModal.hide()">Create</div>
+            <div class="ui negative button primary" (click)="createModal.hide()">Exit</div>
+        </div>
+    </modal-actions>
+</sm-modal>
+
