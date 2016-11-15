@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import { AuthHttp } from "angular2-jwt";
 import { Response } from "@angular/http";
+import { Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
 import "rxjs/add/operator/map";
 
 @Injectable()
