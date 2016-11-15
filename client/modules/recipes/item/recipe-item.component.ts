@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { ApiService } from "../../../service/api.service";
 
 @Component({
-    selector: "form",
+    selector: "recipe-item",
     templateUrl: `client/modules/recipes/item/recipe-item.component.html`
 })
 export class RecipeItemComponent implements OnInit {
@@ -11,13 +11,23 @@ export class RecipeItemComponent implements OnInit {
 
     constructor(
         private apiService: ApiService,
-        private route: ActivatedRoute) {}
+        private route: ActivatedRoute,
+        private router: Router) { }
+
+    deleteRecipe() {
+        this.route.params.forEach((params: Params) => {
+            this.apiService
+                .deleteRecipe(params.id)
+                .subscribe((data) => { this.recipe = data; });
+        });
+        this.router.navigate(['/recipe']);
+    }
 
     ngOnInit() {
-        this.route.params.forEach( (params: Params) => {
+        this.route.params.forEach((params: Params) => {
             this.apiService
                 .getRecipe(params.id)
-                .subscribe( (data) => { this.recipe = data; } );
+                .subscribe((data) => { this.recipe = data; });
         });
     }
 }

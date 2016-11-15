@@ -13,14 +13,13 @@ export class RecipesAllComponent implements OnInit {
     private descr: FormControl = new FormControl('');
 
     constructor(
-        private apiService: ApiService, 
-        private router: Router) {}
+        private apiService: ApiService,
+        private router: Router) { }
 
     updateRecipies() {
-        console.log(2);
         this.apiService
             .getRecipes()
-            .subscribe( (data) => { this.recipesArray = data; } );
+            .subscribe((data) => { this.recipesArray = data; });
     }
 
     showRecipe(id: number) {
@@ -31,6 +30,20 @@ export class RecipesAllComponent implements OnInit {
         this.apiService
             .addRecipe(name, description)
             .subscribe(recipe => this.recipesArray.push(recipe));
+    }
+
+    deleteRecipe(id: number) {
+        this.apiService
+            .deleteRecipe(id)
+            .subscribe(recipe => this.deleteArrayFilter(this.recipesArray, id));
+    }
+
+    deleteArrayFilter(arr: any[], id: number) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id == id)
+                arr.splice(i, 1);
+        }
+        return arr;
     }
 
     ngOnInit() {
