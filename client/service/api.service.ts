@@ -1,17 +1,14 @@
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { Http, Headers } from "@angular/http";
 import { AuthHttp } from "angular2-jwt";
-import { Response } from "@angular/http";
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-
+import { Response, Request } from "@angular/http";
 import "rxjs/add/operator/map";
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ApiService {
-
-    constructor(private authHttp: AuthHttp, private http: Http) {
-    }
+    private data: Observable<Array<any>>;
+    constructor(private authHttp: AuthHttp, private http: Http) { }
 
     get(url: string) {
         return this
@@ -34,21 +31,17 @@ export class ApiService {
             .map((response: Response) => response.json());
     }
 
-    addRecipe(name: String, description: String):Observable<any> {
-        let params = { name, description };
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this
-            .http
-            .put('/api/recipe/', params, options)
-            .map((response: Response) => response.json());
-    }
+    getMeasures() {
+        // if(!this.data){
+        //     this.data =  new Observable(observer => {
 
-    deleteRecipe(id: number):Observable<any> {
+
+        //     }
+        // }
         return this
             .http
-            .delete(`/api/recipe/${id}`)
-            .map((response: Response) => true);
+            .get('/api/measure/')
+            .map((response: Response) => response.json());
     }
 
     getGroceries() {
@@ -58,50 +51,39 @@ export class ApiService {
             .map((response: Response) => response.json());
     }
 
-    getGrocery(id: number) {
+    postCreateMeasure(name: String, type: String, power: number) {
+        let params = JSON.stringify({ name: name, type: type, power: power });
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
         return this
             .http
-            .get(`/api/grocery/${id}`)
-            .map((response: Response) => response.json());
+            .post("/api/measure/", params, { headers: headers })
+            .map(res => res.json())
     }
 
-    remGrocery(id: number) {
+    putUpdateMeasure(id: number, name: String, type: String, power: number) {
+        let params = JSON.stringify({ id: id, name: name, type: type, power: power });
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
         return this
             .http
-            .get(`/api/grocery/remove/${id}`)
-            .map((response: Response) => true);
-
+            .put(`/api/measure/${id}`, params, { headers: headers })
+            .map(res => res.json())
     }
 
-    updateGrocery(groceries: any) {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
 
+    deleteMeasure(id: number) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
         return this
             .http
-            .post(`api/grocery/update/${ groceries.id }`, {groceries}, options)
-            .map((response: Response) => response.json());
-
-    }
-
-    createGrocery(groceries: any) {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let options = new RequestOptions({headers: headers});
-
-        return this
-            .http
-            .post(`api/grocery/create`, {groceries}, options)
-            .map((response: Response) => response.json());
+            .delete(`/api/measure/${id}`, { headers: headers })
+            .map(res => res.json())
 
     }
 
-    search(term: string) {
 
-        return this
-            .http
-            .get(`/api/grocery/search/${term}`)
-            .map((response: Response) => response.json());
-    };
+
 
 
 }
