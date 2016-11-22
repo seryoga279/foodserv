@@ -9,8 +9,6 @@ measureApi.get("/", (request: Request, response: Response) => {
         .then(items => response.send(items));
 });
 
-
-
 measureApi.post("/", (request: Request, response: Response) => {
     let name = request.body.name, type = request.body.type, power = request.body.power;
     db.Measure.create({
@@ -18,11 +16,8 @@ measureApi.post("/", (request: Request, response: Response) => {
         type: type,
         power: power
     })
-        .then(measure => {
-            response.send(measure);
-        });
+    .then(measure => response.send(measure));
 });
-
 
 measureApi.put("/:id", (request: Request, response: Response) => {
     let id = request.params.id, name = request.body.name, type = request.body.type, power = request.body.power;
@@ -31,12 +26,11 @@ measureApi.put("/:id", (request: Request, response: Response) => {
         type: type,
         power: power
     },
-        {
-            where: {
-                id: id
-            }
-        })
-
+    {
+        where: {
+            id: id
+        }
+    });
 });
 
 measureApi.delete("/:id", (request: Request, response: Response) => {
@@ -46,11 +40,7 @@ measureApi.delete("/:id", (request: Request, response: Response) => {
             id: id
         }
     })
-        .then(measure => {
-            response.send(measure);
-        });
+    .then(measure => response.send(measure));
 });
-
-
 
 export { measureApi };

@@ -38,4 +38,5 @@ import { MeasureModule }   from "./modules/measure/measure.module";
         CUSTOM_ELEMENTS_SCHEMA
     ]
 })
+
 export class AppModule {}

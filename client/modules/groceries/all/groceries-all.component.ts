@@ -33,12 +33,9 @@ export class GroceriesAllComponent implements OnInit {
         this.apiService.createGrocery(groceries).subscribe((data)=> {
             this.showGrocery(data.id)
         });
-
-
     }
 
     search(term: string) {
-
         if (term.length == 0) {
             console.log(term.length);
             this.ngOnInit();

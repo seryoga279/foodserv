@@ -23,4 +23,5 @@ import { SharedModule } from "../shared/shared.module";
         CUSTOM_ELEMENTS_SCHEMA
     ]
 })
+
 export class RecipesModule { }

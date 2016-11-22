@@ -117,7 +117,7 @@ export class ApiService {
         return this
             .http
             .post("/api/measure/", params, { headers: headers })
-            .map(res => res.json())
+            .map(res => res.json());
     }
 
     putUpdateMeasure(id: number, name: String, type: String, power: number) {
@@ -127,7 +127,7 @@ export class ApiService {
         return this
             .http
             .put(`/api/measure/${id}`, params, { headers: headers })
-            .map(res => res.json())
+            .map(res => res.json());
     }
 
     deleteMeasure(id: number) {
@@ -136,7 +136,6 @@ export class ApiService {
         return this
             .http
             .delete(`/api/measure/${id}`, { headers: headers })
-            .map(res => res.json())
-
+            .map(res => res.json());
     }
 }
