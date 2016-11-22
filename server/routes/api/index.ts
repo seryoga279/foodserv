@@ -8,9 +8,9 @@ import { measureApi } from "./measure";
 
 const restApi: Router = Router();
 
-restApi.use("/recipe", recipeApi)
-restApi.use("/grocery", groceryApi)
-restApi.use("/measure", measureApi)
+restApi.use("/recipe", recipeApi);
+restApi.use("/grocery", groceryApi);
+restApi.use("/measure", measureApi);
 
 // restApi.use((request: Request & { headers: { authorization: string } }, response: Response, next: NextFunction) => {
 //     const token = request.headers.authorization;

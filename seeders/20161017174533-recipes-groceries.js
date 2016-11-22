@@ -11,7 +11,12 @@ module.exports = {
       { name: 'Pasta', createdAt: new Date(), updatedAt: new Date() },
       { name: 'Soup',  createdAt: new Date(), updatedAt: new Date() },
       { name: 'Kebab', createdAt: new Date(), updatedAt: new Date() }
-    ], {}) )
+    ], {}) 
+    .then(() => queryInterface.bulkInsert('Measures', [
+      { name: 'gramm', type:'mass', power: 1, createdAt: new Date(), updatedAt: new Date() },
+      { name: 'kg', type:'mass', power: 1000, createdAt:  new Date(), updatedAt: new Date() },
+      { name: 'ml', type:'volume', power: 1, createdAt: new Date(), updatedAt: new Date() }
+    ], {})))
     .catch(err=>console.log(err));
   },
 
