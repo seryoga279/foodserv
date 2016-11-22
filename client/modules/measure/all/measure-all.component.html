@@ -1,0 +1,53 @@
+<sm-list class="relaxed selection divided">
+    <sm-item *ngFor="let item of measuresArray">{{item.id}} {{item.name}} {{item.type}} {{item.power}}
+        <button (click)="delete(item.id)">Delete</button>
+        <button (click)="updateMeasureValidate(item.id)">Update</button>
+    </sm-item>
+</sm-list>
+
+<div class="ui container">
+    <sm-segment class="raised">
+        <div *ngIf="showCreate">
+            <h1>Create new Measure</h1>
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="Measure" #name />
+            <label>Type:</label>
+            <select name="type" #type>
+                <option  *ngFor="let item of typesArray">{{item}}</option>
+            </select>
+            <label>Power:</label>
+            <input type="text" name="power" placeholder="Power" #power />
+            <button (click)="createMeasure(name.value,type.value,power.value)">Create</button>
+        </div>
+
+        <div *ngIf="showUpdate">
+            <h1>Update Measure</h1>
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="Measure" #name />
+            <label>Type:</label>
+            <select name="type" #type>
+                <option  *ngFor="let item of typesArray">{{item}}</option>
+            </select>
+            <label>Power:</label>
+            <input type="text" name="power" placeholder="Power" #power />
+            <button (click)="updateMeasure(update,name.value,type.value,power.value)">Update</button>
+        </div>
+    </sm-segment>
+</div>
+
+<div class="ui container">
+    <sm-segment class="raised">
+        <h1>Converter</h1>
+        <input type="text" name="first" placeholder="Value" #firstValue />
+        <select name="type" #firstName>
+            <option  *ngFor="let item of measuresArray">{{item.name}}</option>
+        </select>
+        to 
+        <select name="type" #secondName>
+            <option  *ngFor="let item of measuresArray">{{item.name}}</option>
+        </select>
+        <button (click)="convertMeasure(firstValue.value,firstName.value,secondName.value)">Convert</button>
+        
+        <div>{{result}}</div>
+    </sm-segment>
+</div>

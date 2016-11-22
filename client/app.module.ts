@@ -4,13 +4,14 @@ import { provideAuth } from "angular2-jwt";
 import { HttpModule } from "@angular/http";
 import { NgSemanticModule } from "ng-semantic";
 
-import { AppComponent }  from './app.component';
-import { routing } from "./routes";
-import { HelloComponent } from "./components/shared/hello.component";
-import { ContactModule } from "./modules/contact/contact.module";
-import { HomeModule } from "./modules/home/home.module";
+import { AppComponent }    from './app.component';
+import { routing }         from "./routes";
+import { HelloComponent }  from "./components/shared/hello.component";
+import { ContactModule }   from "./modules/contact/contact.module";
+import { HomeModule }      from "./modules/home/home.module";
 import { GroceriesModule } from "./modules/groceries/groceries.module";
-import { RecipesModule } from "./modules/recipes/recipes.module";
+import { RecipesModule }   from "./modules/recipes/recipes.module";
+import { MeasureModule }   from "./modules/measure/measure.module";
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import { RecipesModule } from "./modules/recipes/recipes.module";
         HomeModule,
         GroceriesModule,
         RecipesModule,
+        MeasureModule,
         routing
     ],
     providers: [
@@ -36,4 +38,5 @@ import { RecipesModule } from "./modules/recipes/recipes.module";
         CUSTOM_ELEMENTS_SCHEMA
     ]
 })
+
 export class AppModule {}

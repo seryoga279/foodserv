@@ -13,7 +13,6 @@ app.disable("x-powered-by");
 
 app.use(favicon(join(__dirname, "../public", "favicon.ico")));
 app.use(express.static(join(__dirname, '../public')));
-
 app.use(json());
 app.use(urlencoded({ extended: true }));
 

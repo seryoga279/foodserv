@@ -103,5 +103,39 @@ export class ApiService {
             .map((response: Response) => response.json());
     };
 
+    getMeasures() {
+        return this
+            .http
+            .get('/api/measure/')
+            .map((response: Response) => response.json());
+    }
 
+    postCreateMeasure(name: String, type: String, power: number) {
+        let params = JSON.stringify({ name: name, type: type, power: power });
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this
+            .http
+            .post("/api/measure/", params, { headers: headers })
+            .map(res => res.json());
+    }
+
+    putUpdateMeasure(id: number, name: String, type: String, power: number) {
+        let params = JSON.stringify({ id: id, name: name, type: type, power: power });
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this
+            .http
+            .put(`/api/measure/${id}`, params, { headers: headers })
+            .map(res => res.json());
+    }
+
+    deleteMeasure(id: number) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this
+            .http
+            .delete(`/api/measure/${id}`, { headers: headers })
+            .map(res => res.json());
+    }
 }

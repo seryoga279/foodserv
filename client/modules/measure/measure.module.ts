@@ -3,11 +3,10 @@ import { HttpModule } from "@angular/http";
 import { NgSemanticModule } from "ng-semantic";
 import { BrowserModule } from '@angular/platform-browser';
 
-import { RecipesAllComponent } from "./all/recipes-all.component";
-import { RecipeItemComponent } from './item/recipe-item.component';
-import { routing } from "./recipes.routing";
+import { MeasureAllComponent } from "./all/measure-all.component";
+import { routing } from "./measure.routing";
 import { SharedModule } from "../shared/shared.module";
-
+ 
 @NgModule({
     imports: [
         BrowserModule,
@@ -16,12 +15,13 @@ import { SharedModule } from "../shared/shared.module";
         routing,
         SharedModule.forRoot()
     ],
-    exports: [  ],
-    declarations: [ RecipesAllComponent, RecipeItemComponent ],
-    bootstrap:    [ RecipesAllComponent ],
+    exports: [],
+    declarations: [
+        MeasureAllComponent
+    ],
+    bootstrap: [MeasureAllComponent],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ]
 })
-
-export class RecipesModule { }
+export class MeasureModule { }
