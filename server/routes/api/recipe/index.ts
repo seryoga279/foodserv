@@ -34,9 +34,3 @@ recipeApi.put("/", (request: Request, response: Response) => {
 
 
 export { recipeApi };
-
-// CRUD
-// C – create PUT
-// R – read   GET
-// U - update POST
-// D - delete DELETE
