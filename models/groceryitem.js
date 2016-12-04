@@ -9,7 +9,8 @@ module.exports = function(sequelize, DataTypes) {
     acid: DataTypes.DOUBLE,
     polyols: DataTypes.DOUBLE,
     fibre: DataTypes.DOUBLE,
-    ethanol: DataTypes.DOUBLE
+    ethanol: DataTypes.DOUBLE,
+    measure: DataTypes.STRING
 
   }, {
     classMethods: {

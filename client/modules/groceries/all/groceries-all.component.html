@@ -5,9 +5,29 @@
         <div class="ui right aligned teal labeled icon button"
              (click)="createModal.show({blurring: false,closable: false})">Create New Grocery <i class="add icon"></i>
         </div>
+        <div class="ui floating labeled icon dropdown button">
+            <i class="filter icon"></i>
+            <span class="text">Sort</span>
+            <div class="menu">
+                <div class="header">
+                    <i class="sort content descending icon"></i>
+                    Sort Grocery
+                </div>
+                <div class="divider"></div>
+                <div class="item">
+                    Name
+                </div>
+                <div class="item">
+                    Calories
+                </div>
+            </div>
         </div>
-
+        </div>
 </div>
+
+<button class="ui medium inverted red button" type="button"
+        (click)="srt('calories')">
+</button>
 
 <sm-list class="ui medium aligned divided animated selection">
     <sm-item (click)="showGrocery(item.id);" *ngFor="let item of groceriesArray" [attr.id]="'grocery:'+item.id">

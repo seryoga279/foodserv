@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ApiService} from "../../../service/api.service";
 import {Router} from "@angular/router";
+import  * as quickSort from  "../all/sort"
 
 @Component({
     selector: "form",
@@ -55,4 +56,8 @@ export class GroceriesAllComponent implements OnInit {
                 this.groceriesArray = data;
             });
     }
+
+ srt(param){
+    new quickSort.QuickSort().quick_sort(this.groceriesArray,param);
+ }
 }

@@ -1,8 +1,36 @@
+<div class="ui grid">
+    <div class="five wide column">
+        <div class="ui image">
+            <a class="ui right corner label">
+                <i class="save icon"></i>
+            </a>
+            <img class="ui medium rounded image" src="">
+        </div>
+
+
+    </div>
+    <div class="eleven wide column">
+        <h2 class="ui header">
+            <i class="edit icon"></i>
+            <div class="content">
+                About {{groceries.name}} Grocery
+            </div>
+        </h2>
+        <div class="content">
+
+        </div>
+    </div>
+</div>
+
+
+
 <table class="ui celled table">
     <thead>
     <tr>
-        <th contenteditable="true" (blur)="groceries.name=$event.target.outerText" colspan="2"> {{ groceries.name }}
+        <th contenteditable="true" (blur)="groceries.name=$event.target.outerText"> {{ groceries.name }}
         </th>
+        <th *ngIf="groceries.measure=='volume'"> 100/ml </th>
+        <th *ngIf="groceries.measure=='mass'"> 100/gr </th>
     </tr>
     </thead>
     <tbody>
