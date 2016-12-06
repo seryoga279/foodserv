@@ -9,8 +9,6 @@ import { FormControl } from "@angular/forms";
 })
 export class RecipesAllComponent implements OnInit {
     private recipesArray: any[];
-    private name: FormControl = new FormControl('');
-    private descr: FormControl = new FormControl('');
 
     constructor(
         private apiService: ApiService,
@@ -44,6 +42,16 @@ export class RecipesAllComponent implements OnInit {
                 arr.splice(i, 1);
         }
         return arr;
+    }
+
+    searchRecipes(term: string) {
+        if (term.length == 0) {
+            this.ngOnInit();
+        } else {
+            this.apiService
+                .searchRecipes(term)
+                .subscribe((data => this.recipesArray = data));
+        }
     }
 
     ngOnInit() {
