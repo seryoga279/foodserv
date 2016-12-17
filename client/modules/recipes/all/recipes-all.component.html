@@ -10,8 +10,8 @@
 	<div class="item" (click)="showRecipe(item.id)" *ngFor="let item of recipesArray">
 		<div class="right floated middle aligned content">
 			<button class="ui medium inverted red button" type="button" (click)="removeModal.show({blurring: false,closable: false});$event.stopPropagation()">
-				<i class="Remove Outline icon"></i> Remove
-			</button>
+                <i class="Remove Outline icon"></i> Remove
+            </button>
 			<sm-modal title="Delete {{item.name}} recipe" class="ui basic modal" icon="Trash" #removeModal>
 				<modal-content>
 					<p align="center">Are you sure you want to delete {{item.name}} recipe?</p>

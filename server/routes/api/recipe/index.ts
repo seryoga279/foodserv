@@ -1,4 +1,4 @@
-import {Router, Response, Request, NextFunction} from "express";
+import { Router, Response, Request, NextFunction } from "express";
 
 const recipeApi: Router = Router();
 
@@ -29,9 +29,7 @@ recipeApi.get("/:id", (request: Request, response: Response) => {
 recipeApi.delete("/:id", (request: Request, response: Response) => {
     let id = request.params.id;
     db.Recipe
-        .destroy({ where: {id} })
         .destroy({ where: { id } })
-        .destroy({where: {id}})
         .then(() => response.sendStatus(200));
 });
 
