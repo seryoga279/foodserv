@@ -1,4 +1,4 @@
-import { Router, Response, Request, NextFunction } from "express";
+import {Router, Response, Request, NextFunction} from "express";
 
 const recipeApi: Router = Router();
 
@@ -12,14 +12,24 @@ recipeApi.get("/", (request: Request, response: Response) => {
 
 recipeApi.get("/:id", (request: Request, response: Response) => {
     db.Recipe
-        .findById(request.params.id)
+        .findAll({
+            where: {
+                id: request.params.id
+            },
+            include:{
+                model: db.GroceryItem,
+                as:"GroceryItemParam",
+                required:false
+
+            }
+        })
         .then(item => response.send(item));
 });
 
 recipeApi.delete("/:id", (request: Request, response: Response) => {
     let id = request.params.id;
     db.Recipe
-        .destroy({ where: {id} })
+        .destroy({where: {id}})
         .then(() => response.sendStatus(200));
 });
 
@@ -33,4 +43,4 @@ recipeApi.put("/", (request: Request, response: Response) => {
 });
 
 
-export { recipeApi };
+export {recipeApi};

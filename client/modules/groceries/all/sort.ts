@@ -33,7 +33,7 @@ export class QuickSort {
     }
 
     quick_sort(list, prop) {
-
+        console.log('property = ',prop);
         this.qsort(list, prop, 0, list.length);
         console.log(list);
     }

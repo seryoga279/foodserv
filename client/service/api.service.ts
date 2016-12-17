@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
-import { AuthHttp } from "angular2-jwt";
-import { Response } from "@angular/http";
-import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
+import {AuthHttp} from "angular2-jwt";
+import {Response} from "@angular/http";
+import {Headers, RequestOptions} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 
 import "rxjs/add/operator/map";
 
@@ -34,17 +34,17 @@ export class ApiService {
             .map((response: Response) => response.json());
     }
 
-    addRecipe(name: String, description: String):Observable<any> {
-        let params = { name, description };
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+    addRecipe(name: String, description: String): Observable<any> {
+        let params = {name, description};
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
         return this
             .http
             .put('/api/recipe/', params, options)
             .map((response: Response) => response.json());
     }
 
-    deleteRecipe(id: number):Observable<any> {
+    deleteRecipe(id: number): Observable<any> {
         return this
             .http
             .delete(`/api/recipe/${id}`)
@@ -80,7 +80,7 @@ export class ApiService {
         return this
             .http
             .post(`api/grocery/update/${ groceries.id }`, {groceries}, options)
-            .map((response: Response) => response.json());
+            .map((response: Response) => true);
 
     }
 
@@ -95,13 +95,30 @@ export class ApiService {
 
     }
 
-    search(term: string) {
-
+    searchGrocery(term: string) {
         return this
             .http
             .get(`/api/grocery/search/${term}`)
             .map((response: Response) => response.json());
     };
+
+    updateImage(id: number, file) {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        return this
+            .http
+            .post(`/api/grocery/image/update`, {grocery_id: id, file: file}, options)
+            //.subscribe(()=>(true), (er)=>console.error(er));
+            .map((response: Response) => true);
+
+    }
+
+    getBlobImage(id: number) {
+        return this
+            .http
+            .get(`/api/grocery/image/get/${id}`)
+            .map((response: Response) => response.json());
+    }
 
     getMeasures() {
         return this
@@ -111,22 +128,22 @@ export class ApiService {
     }
 
     postCreateMeasure(name: String, type: String, power: number) {
-        let params = JSON.stringify({ name: name, type: type, power: power });
+        let params = JSON.stringify({name: name, type: type, power: power});
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this
             .http
-            .post("/api/measure/", params, { headers: headers })
+            .post("/api/measure/", params, {headers: headers})
             .map(res => res.json());
     }
 
     putUpdateMeasure(id: number, name: String, type: String, power: number) {
-        let params = JSON.stringify({ id: id, name: name, type: type, power: power });
+        let params = JSON.stringify({id: id, name: name, type: type, power: power});
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this
             .http
-            .put(`/api/measure/${id}`, params, { headers: headers })
+            .put(`/api/measure/${id}`, params, {headers: headers})
             .map(res => res.json());
     }
 
@@ -135,7 +152,7 @@ export class ApiService {
         headers.append('Content-Type', 'application/json');
         return this
             .http
-            .delete(`/api/measure/${id}`, { headers: headers })
+            .delete(`/api/measure/${id}`, {headers: headers})
             .map(res => res.json());
     }
 }
