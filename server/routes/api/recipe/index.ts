@@ -12,7 +12,17 @@ recipeApi.get("/", (request: Request, response: Response) => {
 
 recipeApi.get("/:id", (request: Request, response: Response) => {
     db.Recipe
-        .findById(request.params.id)
+        .findAll({
+            where: {
+                id: request.params.id
+            },
+            include:{
+                model: db.GroceryItem,
+                as:"GroceryItemParam",
+                required:false
+
+            }
+        })
         .then(item => response.send(item));
 });
 
@@ -45,4 +55,4 @@ recipeApi.get("/search/:term", (request: Request, response: Response) => {
         .then(items => response.send(items));
 });
 
-export { recipeApi };
+export {recipeApi};
