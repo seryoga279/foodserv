@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { ApiService } from "../../../service/api.service";
-import { FormControl } from "@angular/forms";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ApiService} from "../../../service/api.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
     selector: "recipe-item",
@@ -10,32 +10,42 @@ import { FormControl } from "@angular/forms";
 export class RecipeItemComponent implements OnInit {
     private recipe: any = {};
     private editMode: boolean = false;
-    private name: FormControl = new FormControl('');
-    private descr: FormControl = new FormControl('');
 
-    constructor(
-        private apiService: ApiService,
-        private route: ActivatedRoute,
-        private router: Router) { }
+    constructor(private apiService: ApiService,
+                private route: ActivatedRoute,
+                //private  groceriesAllComponent: GroceriesAllComponent,
+                private router: Router) {
+    }
 
     turnEditMode() {
-        this.editMode = !this.editMode; 
+        this.editMode = !this.editMode;
     }
 
     deleteRecipe() {
         this.route.params.forEach((params: Params) => {
             this.apiService
                 .deleteRecipe(params.id)
-                .subscribe((data) => { this.recipe = data; });
+                .subscribe((data) => {
+                    this.recipe = data;
+                });
         });
         this.router.navigate(['/recipe']);
     }
 
+    removeFromRecipe(id: number) {
+        console.log();
+    }
+
     ngOnInit() {
+
         this.route.params.forEach((params: Params) => {
             this.apiService
                 .getRecipe(params.id)
-                .subscribe((data) => { this.recipe = data; });
+                .subscribe((data) => {
+                    this.recipe = data;
+                    console.log(data);
+                });
         });
+
     }
 }

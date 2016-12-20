@@ -9,3 +9,31 @@
     <sm-input [control]="name" class="right fluid"></sm-input>
 	<sm-input [control]="descr" class="right fluid"></sm-input>
 </sm-div>
+<div class="ui segment">
+	<sm-list class="ui medium aligned divided animated selection">
+		<sm-item (click)="showGrocery(item.id);" *ngFor="let item of recipe.GroceryItemParam">
+			<div class="right floated middle aligned content">
+				<button class="ui medium inverted red button" type="button"
+						(click)="removeModal.show({blurring: false,closable: false});$event.stopPropagation()">
+					<i class="Remove Outline icon"></i> Remove from recipe
+				</button>
+				<sm-modal title="Delete {{item.name}} grocery" class="ui basic modal" icon="Trash" #removeModal>
+					<modal-content>
+						<p align="center">Are you sure you want to delete {{item.name}} grocery</p>
+					</modal-content>
+					<modal-actions>
+						<sm-button class="ui cancel red basic inverted" icon="remove" (click)="removeModal.hide()"> No
+						</sm-button>
+						<sm-button class="ui ok green basic inverted" icon="checkmark" (click)="removeFromRecipe(item.id)"> Yes
+						</sm-button>
+					</modal-actions>
+				</sm-modal>
+			</div>
+			<div class="content">
+				<div class="middle aligned content">
+					<h4 class="ui grey header">{{item.name}}</h4>
+				</div>
+			</div>
+		</sm-item>
+	</sm-list>
+</div>
