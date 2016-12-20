@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ApiService} from "../../../service/api.service";
 import {FormControl} from "@angular/forms";
+import  {Location} from "@angular/common";
 
 @Component({
     selector: "recipe-item",
@@ -9,16 +10,11 @@ import {FormControl} from "@angular/forms";
 })
 export class RecipeItemComponent implements OnInit {
     private recipe: any = {};
-    private editMode: boolean = false;
 
     constructor(private apiService: ApiService,
                 private route: ActivatedRoute,
-                //private  groceriesAllComponent: GroceriesAllComponent,
-                private router: Router) {
-    }
-
-    turnEditMode() {
-        this.editMode = !this.editMode;
+                private router: Router,
+                private location: Location) {
     }
 
     deleteRecipe() {
@@ -36,8 +32,11 @@ export class RecipeItemComponent implements OnInit {
         console.log();
     }
 
-    ngOnInit() {
+    goBack(): void {
+        this.location.back();
+    }
 
+    ngOnInit() {
         this.route.params.forEach((params: Params) => {
             this.apiService
                 .getRecipe(params.id)
@@ -46,6 +45,5 @@ export class RecipeItemComponent implements OnInit {
                     console.log(data);
                 });
         });
-
     }
 }

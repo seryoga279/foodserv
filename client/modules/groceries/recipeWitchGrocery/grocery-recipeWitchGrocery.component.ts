@@ -3,7 +3,6 @@ import {ApiService} from "../../../service/api.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import  {Location} from "@angular/common";
 
-
 @Component({
     selector: "form",
     templateUrl: `client/modules/groceries/recipeWitchGrocery/grocery-recipeWitchGrocery.component.html`
@@ -30,6 +29,7 @@ export class GroceriesRecipeWitchGroceryComponent implements OnInit {
                 });
         });
     }
+
     goBack(): void {
         this.location.back();
     }

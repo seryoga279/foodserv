@@ -50,13 +50,11 @@ export class GroceriesItemComponent implements OnInit {
         //console.log(this.file_srcs);
         this.readFiles(input.files);
         this.updateImage(this.file_srcs);
-
     }
 
     updateImage(file) {
         this.apiService.updateImage(this.groceries.id, file);
     }
-
 
     readFile(file, reader, callback) {
         // Set a callback funtion to fire after the file is fully loaded

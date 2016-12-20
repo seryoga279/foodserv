@@ -64,7 +64,6 @@ recipeApi.get("/search/recipeInGrocery/:id", (request: Request, response: Respon
                     id: request.params.id
                 }
             },
-
         })
         .then(items => response.send(items));
 });
